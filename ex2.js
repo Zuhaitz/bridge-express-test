@@ -12,15 +12,15 @@ app.get("/products", (req, res) => {
 });
 
 app.post("/products", (req, res) => {
-  res.status(200).send("product created");
+  res.status(201).send("product created");
 });
 
 app.put("/products", (req, res) => {
-  res.status(200).send("product updated");
+  res.status(201).send("product updated");
 });
 
 app.delete("/products", (req, res) => {
-  res.status(200).send("product deleted");
+  res.status(410).send("product deleted");
 });
 
 app.get("/users", (req, res) => {
@@ -28,15 +28,15 @@ app.get("/users", (req, res) => {
 });
 
 app.post("/users", (req, res) => {
-  res.status(200).send("user created");
+  res.status(201).send("user created");
 });
 
 app.put("/users", (req, res) => {
-  res.status(200).send("user updated");
+  res.status(201).send("user updated");
 });
 
 app.delete("/users", (req, res) => {
-  res.status(200).send("user deleted");
+  res.status(410).send("user deleted");
 });
 
 app.listen(PORT, () => {
