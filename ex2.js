@@ -23,6 +23,22 @@ app.delete("/products", (req, res) => {
   res.status(200).send("product deleted");
 });
 
+app.get("/users", (req, res) => {
+  res.status(200).send("user list");
+});
+
+app.post("/users", (req, res) => {
+  res.status(200).send("user created");
+});
+
+app.put("/users", (req, res) => {
+  res.status(200).send("user updated");
+});
+
+app.delete("/users", (req, res) => {
+  res.status(200).send("user deleted");
+});
+
 app.listen(PORT, () => {
   console.log(`Server listening to port ${PORT}`);
 });
