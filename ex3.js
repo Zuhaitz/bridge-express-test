@@ -17,6 +17,7 @@ let products = {
   ],
 };
 
+// PRODUCTS
 app.get("/products", (req, res) => {
   res.status(200).send(products);
 });
@@ -35,21 +36,29 @@ app.post("/addProduct", (req, res) => {
 app.put("/updateProduct/id/:id", (req, res) => {
   const id = req.params.id;
   const { nombre, precio } = req.body;
+  let status = 400;
+
+  if (!nombre || !precio) return res.status(400).send();
+
   products.items.forEach((item) => {
     if (item.id === +id) {
       item.nombre = nombre ? nombre : item.nombre;
       item.precio = precio ? precio : item.precio;
+      status = 200;
     }
   });
 
-  res.status(200).send(products);
+  status === 200 ? res.status(200).send(products) : res.status(400).send();
 });
 
 app.delete("/deleteProduct/id/:id", (req, res) => {
   const id = req.params.id;
-  products.items = products.items.filter((item) => item.id !== +id);
+  const l = products.items.length;
 
-  res.status(200).send(products);
+  products.items = products.items.filter((item) => item.id !== +id);
+  let status = l === products.items.length ? 400 : 200;
+
+  status === 200 ? res.status(200).send(products) : res.status(400).send();
 });
 
 app.listen(PORT, () => {
